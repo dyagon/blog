@@ -1,0 +1,8 @@
+baseURL = 'https://dyagon.github.io/'
+languageCode = 'en-us'
+title = 'Dyagon'
+
+theme = 'PaperMod'
+
+[params]
+  defaultTheme = 'auto'
