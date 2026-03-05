@@ -1,0 +1,10 @@
+# config/_default/languages.yaml
+zh-cn:
+  languageName: "中文"    # 在语言切换器里显示的文字
+  weight: 1              # 排序优先级
+  title: "Dyagon's Blog"    # 中文版网站标题
+  
+en:
+  languageName: "English"
+  weight: 2
+  title: "Dyagon's Blog"  # 英文版网站标题

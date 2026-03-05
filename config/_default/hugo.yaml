@@ -1,5 +1,5 @@
 baseURL: "https://dyagon.github.io/blog/"
-title: "Dyagon Blog"
+title: "Dyagon's Blog"
 languageCode: "zh-cn"
 DefaultContentLanguage: "zh-cn"
 hasCJKLanguage: true  # 针对中日韩语言的字数统计优化
