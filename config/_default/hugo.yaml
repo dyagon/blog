@@ -1,0 +1,9 @@
+baseURL: "https://dyagon.github.io/blog/"
+title: "Dyagon Blog"
+languageCode: "zh-cn"
+DefaultContentLanguage: "zh-cn"
+hasCJKLanguage: true  # 针对中日韩语言的字数统计优化
+
+theme: "hugo-theme-stack"
+
+paginate: 5  # 每页显示几篇文章

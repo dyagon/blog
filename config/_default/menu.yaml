@@ -1,0 +1,14 @@
+main:
+  - identifier: home
+    name: 首页
+    url: /
+    weight: -100
+    params:
+      icon: home   # 使用 tabler icons 内置图标
+
+  # - identifier: archives
+  #   name: 归档
+  #   url: /archives/
+  #   weight: -90
+  #   params:
+  #     icon: archives

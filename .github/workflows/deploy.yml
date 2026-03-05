@@ -1,68 +1,56 @@
-# Sample workflow for building and deploying a Hugo site to GitHub Pages
 name: Deploy Hugo site to Pages
 
 on:
-  # 当推送到默认分支（通常是 main 或 master）时触发
+  # 当代码推送到 main 分支时触发部署（如果你的默认分支叫 master，请改成 master）
   push:
-    branches:
-      - main  # 如果你的主分支是 master，请这里改为 master
-
-  # 允许你从 Actions 选项卡手动运行此工作流
+    branches: ["main"]
+  # 允许你在 GitHub 网页上手动点击运行
   workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限，允许部署到 GitHub Pages
+# 设置权限，允许 GitHub Actions 写入 Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署，跳过正在进行的运行队列以等待最新队列。
-# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成。
+# 确保同一时间只有一个部署任务在运行
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
-# 默认使用 bash shell
 defaults:
   run:
     shell: bash
 
 jobs:
-  # 构建任务
   build:
     runs-on: ubuntu-latest
-    env:
-      HUGO_VERSION: latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive # 如果你的主题是作为 submodule 添加的，这行非常重要！
-          fetch-depth: 0 # 获取所有历史记录，这对 GitInfo 功能（如最后修改时间）很有用
+          # 【最核心的一句】告诉 GitHub 把 Submodule 主题代码也拉下来！
+          submodules: recursive 
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: ${{ env.HUGO_VERSION }}
-          extended: true # 如果使用 SCSS/SASS 的主题，通常需要开启 extended 版本
+          hugo-version: 'latest'
+          extended: true # Stack 主题处理 SCSS 样式需要 extended 版本
 
       - name: Build with Hugo
         env:
-          # 用于 Hugo 构建的额外参数
+          # 为了最大限度兼容，设定环境变量
           HUGO_ENVIRONMENT: production
-          HUGO_ENV: production
         run: |
-          hugo \
-            --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --gc --minify
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
-  # 部署任务
   deploy:
     environment:
       name: github-pages
