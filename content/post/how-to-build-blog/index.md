@@ -1,4 +1,9 @@
-## 从零手动搭建 Hugo Stack 主题博客：Submodule + YAML + GitHub Pages 全流程
+---
+title: 从零手动搭建 Hugo Stack 主题博客：Submodule + YAML + GitHub Pages 全流程
+slug: how-to-build-blog
+date: 2026-03-05
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
 
 这篇文章记录的是我和一个 AI 工具围绕 Hugo + `hugo-theme-stack` 折腾的一整段对话，经过整理之后，变成了一篇**从零手动搭建与掌控博客的技术笔记**。目标是：
 
